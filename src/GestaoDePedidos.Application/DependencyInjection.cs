@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-
-namespace GestaoDePedidos.Application;
+﻿namespace GestaoDePedidos.Application;
 
 public static class DependencyInjection
 {
@@ -8,7 +6,9 @@ public static class DependencyInjection
     {
         public IServiceCollection AddApplication()
         {
-            services.AddServices();
+            services
+                .AddServices()
+                .AddValidators();
             
             return services;
         }
@@ -18,6 +18,13 @@ public static class DependencyInjection
             services.AddScoped<IClienteService, ClienteService>();
             services.AddScoped<IProdutoService, ProdutoService>();
             
+            
+            return services;
+        }
+
+        private IServiceCollection AddValidators()
+        {
+            services.AddValidatorsFromAssemblies([Assembly.GetExecutingAssembly()]);
             
             return services;
         }

@@ -14,8 +14,8 @@ public class ObterProdutosUseCase(IGestaoDePedidosDbContext context) : IObterPro
                 Preco = p.Preco,
                 Estoque = p.Estoque,
                 Ativo = p.Ativo,
-                DataCriacao = p.DataCriacao,
-                DataAtualizacao = p.DataAtualizacao
+                DataCriacao = p.DataCriacao.Date,
+                DataAtualizacao = p.DataAtualizacao.Value.Date
             })
             .ToPagedResultAsync(request);
 

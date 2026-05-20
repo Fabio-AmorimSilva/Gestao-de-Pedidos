@@ -15,7 +15,7 @@ public class ClienteEntityTypeConfiguration : IEntityTypeConfiguration<Cliente>
 
         builder
             .Property(c => c.Nome)
-            .HasMaxLength(Cliente.NomeMaxLength)
+            .HasMaxLength(Cliente.NomeTamanhoMax)
             .IsRequired();
 
         builder

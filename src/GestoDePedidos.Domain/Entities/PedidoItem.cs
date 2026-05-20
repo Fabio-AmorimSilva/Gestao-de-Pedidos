@@ -2,8 +2,8 @@
 
 public class PedidoItem : Entity
 {
-    public const int QuantidadeMinLength = 0;
-    public const int PrecoMinLength = 0;
+    public const int QuantidadeTamanhoMinimo = 0;
+    public const int PrecoTamanhoMinimo = 0;
     
     public Guid PedidoId { get; private set; }
     public Guid ProdutoId { get; private set; }
@@ -18,8 +18,8 @@ public class PedidoItem : Entity
     )
     {
         Guard.IsNotDefault(produtoId);
-        Guard.IsGreaterThan(quantidade, QuantidadeMinLength);
-        Guard.IsGreaterThan(preco, PrecoMinLength);
+        Guard.IsGreaterThan(quantidade, QuantidadeTamanhoMinimo);
+        Guard.IsGreaterThan(preco, PrecoTamanhoMinimo);
         
         ProdutoId = produtoId;
         Quantidade = quantidade;

@@ -18,14 +18,14 @@ public class AtualizarProdutoUseCaseModelValidator : AbstractValidator<Atualizar
         RuleFor(m => m.Nome)
             .NotEmpty()
             .WithMessage(ErrorMessages.NaoPodeSerVazio(nameof(AtualizarProdutoUseCaseModel.Nome)))
-            .MaximumLength(Produto.NomeMaxLength)
-            .WithMessage(ErrorMessages.TemTamanhoMaximo(nameof(AtualizarProdutoUseCaseModel.Nome), Produto.NomeMaxLength));
+            .MaximumLength(Produto.NomeTamanhoMaximo)
+            .WithMessage(ErrorMessages.TemTamanhoMaximo(nameof(AtualizarProdutoUseCaseModel.Nome), Produto.NomeTamanhoMaximo));
         
         RuleFor(m => m.Descricao)
             .NotEmpty()
             .WithMessage(ErrorMessages.NaoPodeSerVazio(nameof(AtualizarProdutoUseCaseModel.Nome)))
-            .MaximumLength(Produto.DescricaoMaxLength)
-            .WithMessage(ErrorMessages.TemTamanhoMaximo(nameof(AtualizarProdutoUseCaseModel.Descricao), Produto.DescricaoMaxLength));
+            .MaximumLength(Produto.DescricaoTamanhoMaximo)
+            .WithMessage(ErrorMessages.TemTamanhoMaximo(nameof(AtualizarProdutoUseCaseModel.Descricao), Produto.DescricaoTamanhoMaximo));
         
         RuleFor(m => m.Preco)
             .Must(m => m > 0)

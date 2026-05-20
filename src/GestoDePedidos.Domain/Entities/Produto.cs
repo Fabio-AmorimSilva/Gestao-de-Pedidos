@@ -2,8 +2,8 @@
 
 public class Produto : Entity, IAuditableEntity
 {
-    public const int NomeMaxLength = 500;
-    public const int DescricaoMaxLength = 2000;
+    public const int NomeTamanhoMaximo = 500;
+    public const int DescricaoTamanhoMaximo = 2000;
 
     public string Nome { get; private set; }
     public string Descricao { get; private set; }
@@ -21,7 +21,7 @@ public class Produto : Entity, IAuditableEntity
     )
     {
         Guard.IsNotEmpty(nome);
-        Guard.IsLessThanOrEqualTo(nome.Length, NomeMaxLength, nameof(nome));
+        Guard.IsLessThanOrEqualTo(nome.Length, NomeTamanhoMaximo, nameof(nome));
         Guard.IsGreaterThan(estoque, 0);
 
         Nome = nome;

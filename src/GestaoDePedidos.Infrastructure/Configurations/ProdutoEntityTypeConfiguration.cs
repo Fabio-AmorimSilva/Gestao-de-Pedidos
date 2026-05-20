@@ -12,12 +12,12 @@ public class ProdutoEntityTypeConfiguration : IEntityTypeConfiguration<Produto>
 
         builder
             .Property(p => p.Nome)
-            .HasMaxLength(Produto.NomeMaxLength)
+            .HasMaxLength(Produto.NomeTamanhoMaximo)
             .IsRequired();
 
         builder
             .Property(p => p.Descricao)
-            .HasMaxLength(Produto.DescricaoMaxLength)
+            .HasMaxLength(Produto.DescricaoTamanhoMaximo)
             .IsRequired();
 
         builder

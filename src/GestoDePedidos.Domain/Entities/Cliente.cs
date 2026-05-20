@@ -2,7 +2,7 @@
 
 public class Cliente : Entity, IAuditableEntity
 {
-    public const int NomeMaxLength = 200; 
+    public const int NomeTamanhoMax = 200; 
     
     public string Nome { get; private set; }
     public string Email { get; private set; }

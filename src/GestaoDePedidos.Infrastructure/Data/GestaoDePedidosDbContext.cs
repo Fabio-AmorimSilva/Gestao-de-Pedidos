@@ -9,6 +9,12 @@ public class GestaoDePedidosDbContext(DbContextOptions<GestaoDePedidosDbContext>
     public DbSet<Produto> Produtos { get; set; }
     public DbSet<PedidoHistoricoStatus> PedidoHistoricoStatus { get; set; }
 
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.AddInterceptors(new AuditableEntityInterceptor());
+        base.OnConfiguring(optionsBuilder);
+    }
+    
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());

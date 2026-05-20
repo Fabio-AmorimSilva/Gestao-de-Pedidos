@@ -2,8 +2,9 @@
 
 public record ObterPedidosUseCaseModel
 {
-    public StatusPedido Status { get; set; }
-    public decimal Total { get; set; }
-    public DateTime DataCriacao { get; set; }
-    public IEnumerable<ObterPedidosItemUseCaseModel> Itens { get; set; }
+    public Guid PedidoId { get; init; }
+    public StatusPedido Status { get; init; }
+    public decimal Total { get; init; }
+    public DateTime DataCriacao { get; init; }
+    public IEnumerable<ObterPedidosItemUseCaseModel> Itens { get; init; }
 }

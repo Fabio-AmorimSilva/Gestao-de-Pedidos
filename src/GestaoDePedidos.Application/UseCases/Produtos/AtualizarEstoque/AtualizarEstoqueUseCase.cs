@@ -5,7 +5,7 @@ public class AtualizarEstoqueUseCase(IGestaoDePedidosDbContext context) : IAtual
     public async Task<Response> ExecuteAsync(AtualizarEstoqueUseCaseModel model)
     {
         var produto = await context.Produtos
-            .FirstOrDefaultAsync(p => p.Id == model.Id);
+            .FirstOrDefaultAsync(p => p.Id == model.ProdutoId && p.Ativo);
 
         if (produto is null)
             return new NotFoundResponse<AtualizarEstoqueUseCaseModel>(ErrorMessages.NaoEncontrado<Produto>());

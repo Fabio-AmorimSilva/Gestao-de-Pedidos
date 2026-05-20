@@ -5,7 +5,7 @@ public class AtualizarProdutoUseCase(IGestaoDePedidosDbContext context) : IAtual
     public async Task<Response> ExecuteAsync(AtualizarProdutoUseCaseModel model)
     {
         var produto = await context.Produtos
-            .FirstOrDefaultAsync(p => p.Id == model.Id);
+            .FirstOrDefaultAsync(p => p.Id == model.ProdutoId && p.Ativo);
 
         if (produto is null)
             return new NotFoundResponse<AtualizarProdutoUseCaseModel>(ErrorMessages.NaoEncontrado<Produto>());
@@ -15,6 +15,7 @@ public class AtualizarProdutoUseCase(IGestaoDePedidosDbContext context) : IAtual
             descricao: model.Descricao,
             preco: model.Preco
         );
+        
         await context.SaveChangesAsync();
 
         return new NoContentResponse();

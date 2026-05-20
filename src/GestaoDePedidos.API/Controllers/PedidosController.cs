@@ -15,17 +15,17 @@ public class PedidosController(UseCaseValidation validation) : BaseController(va
     public async Task<IActionResult> Post([FromBody] CriarPedidoUseCaseModel model)
         => await Execute<ICriarPedidoUseCase, CriarPedidoUseCaseModel, Response<Guid>>(model);
 
-    [HttpPut("{id:guid}/pago")]
-    public async Task<IActionResult> Pago(Guid id)
-        => await Execute<IAlterarStatusPedidoPagoUseCase, Guid, Response>(id);
+    [HttpPatch("{id:guid}/pago")]
+    public async Task<IActionResult> Pago(Guid id, [FromBody] AlterarStatusDtoPayload payload)
+        => await Execute<IAlterarStatusPedidoPagoUseCase, AlterarStatusDto, Response>(payload.AsDto(id));
 
-    [HttpPut("{id:guid}/enviado")]
-    public async Task<IActionResult> Enviado(Guid id)
-        => await Execute<IAlterarStatusPedidoEnviadoUseCase, Guid, Response>(id);
+    [HttpPatch("{id:guid}/enviado")]
+    public async Task<IActionResult> Enviado(Guid id, [FromBody] AlterarStatusDtoPayload payload)
+        => await Execute<IAlterarStatusPedidoEnviadoUseCase, AlterarStatusDto, Response>(payload.AsDto(id));
 
-    [HttpPut("{id:guid}/cancelado")]
-    public async Task<IActionResult> Cancelado(Guid id)
-        => await Execute<IAlterarStatusPedidoParaCanceladoUseCase, Guid, Response>(id);
+    [HttpPatch("{id:guid}/cancelado")]
+    public async Task<IActionResult> Cancelado(Guid id, [FromBody] AlterarStatusDtoPayload payload)
+        => await Execute<IAlterarStatusPedidoParaCanceladoUseCase, AlterarStatusDto, Response>(payload.AsDto(id));
 
     [HttpGet("{id:guid}/historico-status")]
     public async Task<IActionResult> HistoricoStatus(

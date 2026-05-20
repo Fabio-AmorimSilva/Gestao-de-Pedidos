@@ -15,13 +15,13 @@ public class ProdutosController(UseCaseValidation validation) : BaseController(v
     public async Task<IActionResult> Post([FromBody] CadastrarProdutoUseCaseModel model)
         => await Execute<ICadastrarProdutoUseCase, CadastrarProdutoUseCaseModel, Response<Guid>>(model);
 
-    [HttpPut("{id:guid}")]
-    public async Task<IActionResult> Put(Guid id, [FromBody] AtualizarProdutoUseCaseModel model)
-        => await Execute<IAtualizarProdutoUseCase, AtualizarProdutoUseCaseModel, Response>(model);
+    [HttpPatch("{id:guid}")]
+    public async Task<IActionResult> Put(Guid id, [FromBody] AtualizarProdutoUseCaseModelPayload payload)
+        => await Execute<IAtualizarProdutoUseCase, AtualizarProdutoUseCaseModel, Response>(payload.AsModel(id));
 
     [HttpPatch("{id:guid}/estoque")]
-    public async Task<IActionResult> AtualizarEstoque(Guid id, [FromBody] AtualizarEstoqueUseCaseModel model)
-        => await Execute<IAtualizarEstoqueUseCase, AtualizarEstoqueUseCaseModel, Response>(model);
+    public async Task<IActionResult> AtualizarEstoque(Guid id, [FromBody] AtualizarEstoqueUseCaseModelPayload payload)
+        => await Execute<IAtualizarEstoqueUseCase, AtualizarEstoqueUseCaseModel, Response>(payload.AsDto(id));
 
     [HttpPatch("{id:guid}/ativar")]
     public async Task<IActionResult> Ativar(Guid id)

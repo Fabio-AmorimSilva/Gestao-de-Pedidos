@@ -26,7 +26,7 @@ public class BaseController : ControllerBase
             {
                 Title = "Resource not found",
                 Detail = result.Message,
-                Status = 404
+                Status = NoContent().StatusCode
             }),
             _ => Problem(title: "Unexpected error", statusCode: 500)
         };
@@ -37,15 +37,16 @@ public class BaseController : ControllerBase
             OkResponse<T> ok => Ok(ok.Data),
 
             CreatedResponse<T> created => Created(
-                string.Empty,
-                created.Data),
+                uri: string.Empty,
+                value: created.Data
+            ),
 
             NotFoundResponse<T> notFound => NotFound(
                 new ProblemDetails
                 {
                     Title = "Resource not found",
                     Detail = notFound.Message,
-                    Status = 404
+                    Status = NotFound().StatusCode
                 }),
 
             UnprocessableResponse<T> unprocessable => UnprocessableEntity(
@@ -53,12 +54,13 @@ public class BaseController : ControllerBase
                 {
                     Title = "Validation error",
                     Detail = unprocessable.Message,
-                    Status = 422
+                    Status = UnprocessableEntity().StatusCode
                 }),
 
             NoContentResponse => NoContent(),
             _ => Problem(
                 title: "Unexpected error",
-                statusCode: 500)
+                statusCode: 500
+            )
         };
 }

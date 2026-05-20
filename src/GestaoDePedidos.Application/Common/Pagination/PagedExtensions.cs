@@ -10,7 +10,7 @@ public static class PaginationExtensions
         var indicePagina = Math.Max(request.IndicePagina, 1);
         var tamanhoPagina = Math.Max(request.TamanhoPagina, 1);
 
-        var totalRecords =
+        var totalRegistros =
             await query.CountAsync();
 
         var dados = await query
@@ -23,8 +23,8 @@ public static class PaginationExtensions
             Dados = dados,
             IndicePagina = indicePagina,
             TamanhoPagina = tamanhoPagina,
-            TotalRegistros = totalRecords,
-            TotalPaginas = (int)Math.Ceiling(totalRecords / (double)tamanhoPagina)
+            TotalRegistros = totalRegistros,
+            TotalPaginas = (int)Math.Ceiling(totalRegistros / (double)tamanhoPagina)
         };
     }
 }

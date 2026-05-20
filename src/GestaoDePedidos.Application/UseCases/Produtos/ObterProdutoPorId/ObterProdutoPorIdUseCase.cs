@@ -13,7 +13,7 @@ public class ObterProdutoPorIdUseCase(IGestaoDePedidosDbContext context) : IObte
 
         return new OkResponse<ObterProdutoPorIdUseCaseModel>(new ObterProdutoPorIdUseCaseModel
         {
-            Id = produto.Id,
+            ProdutoId = produto.Id,
             Nome = produto.Nome,
             Descricao = produto.Descricao,
             Preco = produto.Preco,

@@ -15,6 +15,8 @@ public static class DependencyInjection
 
         private IServiceCollection AddUseCases()
         {
+            services.AddScoped<UseCaseValidation>();
+            
             services.AddScoped<ICriarClienteUseCase, CriarClienteUseCase>();
             services.AddScoped<IObterClientePorIdUseCase, ObterClientePorIdUseCase>();
             services.AddScoped<IObterClientesUseCase, ObterClientesUseCase>();
@@ -27,7 +29,15 @@ public static class DependencyInjection
             services.AddScoped<IDesativarProdutoUseCase, DesativarProdutoUseCase>();
             services.AddScoped<IObterProdutoPorIdUseCase, ObterProdutoPorIdUseCase>();
             services.AddScoped<IObterProdutosUseCase, ObterProdutosUseCase>();
-            
+
+            services.AddScoped<ICriarPedidoUseCase, CriarPedidoUseCase>();
+            services.AddScoped<IObterPedidosUseCase, ObterPedidosUseCase>();
+            services.AddScoped<IObterPedidoPorIdUseCase, ObterPedidoPorIdUseCase>();
+            services.AddScoped<IAlterarStatusPedidoPagoUseCase, AlterarStatusPedidoPagoUseCase>();
+            services.AddScoped<IAlterarStatusPedidoEnviadoUseCase, AlterarStatusPedidoEnviadoUseCase>();
+            services.AddScoped<IAlterarStatusPedidoParaCanceladoUseCase, AlterarStatusPedidoParaCanceladoUseCase>();
+            services.AddScoped<IObterHistoricoStatusPedidoUseCase, ObterHistoricoStatusPedidoUseCase>();
+
             return services;
         }
 

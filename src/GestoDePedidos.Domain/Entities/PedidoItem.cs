@@ -2,6 +2,9 @@
 
 public class PedidoItem : Entity
 {
+    public const int QuantidadeMinLength = 0;
+    public const int PrecoMinLength = 0;
+    
     public Guid PedidoId { get; private set; }
     public Guid ProdutoId { get; private set; }
     public int Quantidade { get; private set; }
@@ -14,6 +17,10 @@ public class PedidoItem : Entity
         decimal preco
     )
     {
+        Guard.IsNotDefault(produtoId);
+        Guard.IsLessThanOrEqualTo(quantidade, QuantidadeMinLength);
+        Guard.IsLessThanOrEqualTo(PrecoMinLength, PrecoMinLength);
+        
         ProdutoId = produtoId;
         Quantidade = quantidade;
         Preco = preco;

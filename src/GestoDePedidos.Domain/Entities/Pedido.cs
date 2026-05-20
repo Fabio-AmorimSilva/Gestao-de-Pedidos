@@ -14,6 +14,8 @@ public class Pedido : Entity
         Guid clientId
     )
     {
+        Guard.IsNotDefault(clientId);
+        
         ClientId = clientId;
         Status = StatusPedido.Criado;
         Total = TotalItens();

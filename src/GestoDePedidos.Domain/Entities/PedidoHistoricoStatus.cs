@@ -2,6 +2,8 @@
 
 public class PedidoHistoricoStatus : Entity
 {
+    public const int MotivoMaxLength = 1500;
+    
     public Guid PedidoId { get; private set; }
     public Pedido Pedido { get; private set; }
     public StatusPedido StatusAnterior { get; private set; }
@@ -16,6 +18,11 @@ public class PedidoHistoricoStatus : Entity
         string? motivo
     )
     {
+        Guard.IsNotDefault(pedidoId);
+
+        if (!string.IsNullOrWhiteSpace(motivo))
+            Guard.IsLessThanOrEqualTo(MotivoMaxLength, motivo.Length, nameof(motivo));
+        
         PedidoId = pedidoId;
         StatusAnterior = statusAnterior;
         StatusPosterior = statusPosterior;

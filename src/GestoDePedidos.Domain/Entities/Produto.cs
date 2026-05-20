@@ -39,6 +39,12 @@ public class Produto : Entity, IAuditableEntity
         Preco = preco;
     }
 
+    public void AdicionarAoEstoque(int estoque)
+    {
+        Guard.IsGreaterThan(estoque, 0);
+        Estoque += estoque;
+    }
+
     public void AtualizarEstoque(int estoque)
     {
         Guard.IsGreaterThan(estoque, 0);

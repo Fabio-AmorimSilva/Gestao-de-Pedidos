@@ -4,8 +4,8 @@
 public class ClientesController(UseCaseValidation validation) : BaseController(validation)
 {
     [HttpGet]
-    public async Task<IActionResult> List()
-        => await Execute<IObterClientesUseCase, Unit, Response<IEnumerable<ObterClientesUseCaseModel>>>(Unit.Value);
+    public async Task<IActionResult> List([FromQuery]  PagedRequest request)
+        => await Execute<IObterClientesUseCase, PagedRequest, Response<PagedResult<ObterClientesUseCaseModel>>>(request);
 
     [HttpGet]
     public async Task<IActionResult> Get(Guid id)

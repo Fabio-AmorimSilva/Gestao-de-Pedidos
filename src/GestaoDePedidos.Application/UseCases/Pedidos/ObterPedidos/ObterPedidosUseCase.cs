@@ -2,7 +2,7 @@
 
 public class ObterPedidosUseCase(IGestaoDePedidosDbContext context) : IObterPedidosUseCase
 {
-    public async Task<Response<IEnumerable<ObterPedidosUseCaseModel>>> ExecuteAsync()
+    public async Task<Response<PagedResult<ObterPedidosUseCaseModel>>> ExecuteAsync(PagedRequest request)
     {
         var pedidos = await context.Pedidos
             .AsNoTracking()
@@ -17,8 +17,8 @@ public class ObterPedidosUseCase(IGestaoDePedidosDbContext context) : IObterPedi
                     Quantidade = i.Quantidade,
                     Total = i.Total
                 })
-            }).ToListAsync();
+            }).ToPagedResultAsync(request);
         
-        return new OkResponse<IEnumerable<ObterPedidosUseCaseModel>>(pedidos);
+        return new OkResponse<PagedResult<ObterPedidosUseCaseModel>>(pedidos);
     }
 }

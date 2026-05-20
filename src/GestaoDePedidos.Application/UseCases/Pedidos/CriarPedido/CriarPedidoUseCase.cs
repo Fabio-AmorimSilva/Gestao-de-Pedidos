@@ -31,15 +31,17 @@ public class CriarPedidoUseCase(IGestaoDePedidosDbContext context) : ICriarPedid
                 quantidade: item.Quantidade,
                 preco: produto.Preco
             );
-
-            pedido.AddItem(pedidoItem);
             
             var isEstoqueValido = produto.RemoverDoEstoque(item.Quantidade);
             
             if(!isEstoqueValido)
                 return new UnprocessableResponse<Guid>(ErrorMessages.EstoqueInsuficiente());
+            
+            pedido.AddItem(pedidoItem);
+            
+            await context.Pedidos.AddAsync(pedido);
         }
-
+        
         await context.SaveChangesAsync();
 
         return new CreatedResponse<Guid>(pedido.Id);

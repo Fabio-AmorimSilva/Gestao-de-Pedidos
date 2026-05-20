@@ -9,17 +9,17 @@ public class PedidoItem : Entity
     public decimal Total { get; private set; }
 
     public PedidoItem(
-        Guid pedidoId,
         Guid produtoId, 
         int quantidade,
-        decimal preco, 
-        decimal total
+        decimal preco
     )
     {
-        PedidoId = pedidoId;
         ProdutoId = produtoId;
         Quantidade = quantidade;
         Preco = preco;
-        Total = total;
+        Total = TotalItem();
     }
+    
+    public decimal TotalItem()
+        => Quantidade * Preco;
 }

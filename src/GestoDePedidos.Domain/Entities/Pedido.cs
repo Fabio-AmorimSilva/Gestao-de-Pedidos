@@ -3,7 +3,7 @@ namespace GestoDePedidos.Domain.Entities;
 public class Pedido : Entity
 {
     public Guid ClientId { get; private set; }
-    public StatusPedido Status { get; set; }
+    public StatusPedido Status { get; private set; }
     public decimal Total { get; private set; }
     public DateTime DataCriacao { get; set; }
     

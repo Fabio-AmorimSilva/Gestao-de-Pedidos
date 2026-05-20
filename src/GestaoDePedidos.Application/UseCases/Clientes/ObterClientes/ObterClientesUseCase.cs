@@ -2,7 +2,7 @@
 
 public class ObterClientesUseCase(IGestaoDePedidosDbContext context) : IObterClientesUseCase
 {
-    public async Task<Response<IEnumerable<ObterClientesUseCaseModel>>> ExecuteAsync()
+    public async Task<Response<PagedResult<ObterClientesUseCaseModel>>> ExecuteAsync(PagedRequest request)
     {  
         var clientes = await context.Clientes
             .AsNoTracking()
@@ -12,8 +12,8 @@ public class ObterClientesUseCase(IGestaoDePedidosDbContext context) : IObterCli
                 Email = c.Email,
                 Documento = c.Documento
             })
-            .ToListAsync();
-
-        return new OkResponse<IEnumerable<ObterClientesUseCaseModel>>(clientes);
+            .ToPagedResultAsync(request);
+        
+        return new OkResponse<PagedResult<ObterClientesUseCaseModel>>(clientes);
     }
 }

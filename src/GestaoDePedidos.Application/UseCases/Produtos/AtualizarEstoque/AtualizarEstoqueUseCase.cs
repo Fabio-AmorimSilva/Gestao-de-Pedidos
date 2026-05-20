@@ -8,7 +8,7 @@ public class AtualizarEstoqueUseCase(IGestaoDePedidosDbContext context) : IAtual
             .FirstOrDefaultAsync(p => p.Id == model.Id);
 
         if (produto is null)
-            return new NotFoundResponse<AtualizarEstoqueUseCaseModel>(ErrorMessages.NotFound<Produto>());
+            return new NotFoundResponse<AtualizarEstoqueUseCaseModel>(ErrorMessages.NaoEncontrado<Produto>());
 
         produto.AtualizarEstoque(estoque: model.Estoque);
         await context.SaveChangesAsync();

@@ -9,7 +9,7 @@ public class ObterProdutoPorIdUseCase(IGestaoDePedidosDbContext context) : IObte
             .FirstOrDefaultAsync(p => p.Id == id);
 
         if (produto is null)
-            return new NotFoundResponse<ObterProdutoPorIdUseCaseModel>(ErrorMessages.NotFound<Produto>());
+            return new NotFoundResponse<ObterProdutoPorIdUseCaseModel>(ErrorMessages.NaoEncontrado<Produto>());
 
         return new OkResponse<ObterProdutoPorIdUseCaseModel>(new ObterProdutoPorIdUseCaseModel
         {

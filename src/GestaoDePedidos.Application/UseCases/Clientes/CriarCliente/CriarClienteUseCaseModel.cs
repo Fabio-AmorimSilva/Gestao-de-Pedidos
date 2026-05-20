@@ -12,18 +12,18 @@ public class CriarClienteUseCaseModelValidator : AbstractValidator<CriarClienteU
     {
         RuleFor(dto => dto.Nome)
             .NotEmpty()
-            .WithMessage(ErrorMessages.CannotBeEmpty(nameof(CriarClienteUseCaseModel.Nome)))
+            .WithMessage(ErrorMessages.NaoPodeSerVazio(nameof(CriarClienteUseCaseModel.Nome)))
             .MaximumLength(Cliente.NomeMaxLength)
-            .WithMessage(ErrorMessages.HasMaxLength(nameof(CriarClienteUseCaseModel.Nome), Cliente.NomeMaxLength));
+            .WithMessage(ErrorMessages.TemTamanhoMaximo(nameof(CriarClienteUseCaseModel.Nome), Cliente.NomeMaxLength));
 
         RuleFor(dto => dto.Email)
             .NotEmpty()
-            .WithMessage(ErrorMessages.CannotBeEmpty(nameof(CriarClienteUseCaseModel.Email)))
+            .WithMessage(ErrorMessages.NaoPodeSerVazio(nameof(CriarClienteUseCaseModel.Email)))
             .EmailAddress()
-            .WithMessage(ErrorMessages.InvalidEmail());
+            .WithMessage(ErrorMessages.EmailInvalido());
 
         RuleFor(dto => dto.Documento)
             .NotEmpty()
-            .WithMessage(ErrorMessages.CannotBeEmpty(nameof(CriarClienteUseCaseModel.Documento)));
+            .WithMessage(ErrorMessages.NaoPodeSerVazio(nameof(CriarClienteUseCaseModel.Documento)));
     }
 }

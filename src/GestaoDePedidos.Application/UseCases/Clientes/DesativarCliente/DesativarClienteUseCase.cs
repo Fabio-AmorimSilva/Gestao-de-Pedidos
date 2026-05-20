@@ -9,7 +9,7 @@ public class DesativarClienteUseCase(IGestaoDePedidosDbContext context) : IDesat
             .FirstOrDefaultAsync(c => c.Id == id && c.Ativo);
 
         if (cliente is null)
-            return new NotFoundResponse<Guid>(ErrorMessages.NotFound<Cliente>());
+            return new NotFoundResponse<Guid>(ErrorMessages.NaoEncontrado<Cliente>());
 
         cliente.Desativar();
 

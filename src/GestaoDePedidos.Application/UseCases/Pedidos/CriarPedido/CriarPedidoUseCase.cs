@@ -11,7 +11,7 @@ public class CriarPedidoUseCase(IGestaoDePedidosDbContext context) : ICriarPedid
             );
 
         if (cliente is null)
-            return new NotFoundResponse<Guid>(ErrorMessages.NotFound<Cliente>());
+            return new NotFoundResponse<Guid>(ErrorMessages.NaoEncontrado<Cliente>());
         
         var pedido = new Pedido(clientId: cliente.Id);
 
@@ -24,7 +24,7 @@ public class CriarPedidoUseCase(IGestaoDePedidosDbContext context) : ICriarPedid
             );
             
             if(produto is null)
-                return new NotFoundResponse<Guid>(ErrorMessages.NotFound<Produto>());
+                return new NotFoundResponse<Guid>(ErrorMessages.NaoEncontrado<Produto>());
 
             var pedidoItem = new PedidoItem(
                 produtoId: produto.Id,
@@ -34,7 +34,7 @@ public class CriarPedidoUseCase(IGestaoDePedidosDbContext context) : ICriarPedid
 
             pedido.AddItem(pedidoItem);
             
-            var isEstoqueValido = produto.RemoverEstoque(item.Quantidade);
+            var isEstoqueValido = produto.RemoverDoEstoque(item.Quantidade);
             
             if(!isEstoqueValido)
                 return new UnprocessableResponse<Guid>(ErrorMessages.EstoqueInsuficiente());

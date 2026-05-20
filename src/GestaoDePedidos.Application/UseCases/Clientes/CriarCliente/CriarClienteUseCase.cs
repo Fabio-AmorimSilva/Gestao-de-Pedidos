@@ -15,14 +15,14 @@ public class CriarClienteUseCase(IGestaoDePedidosDbContext context) : ICriarClie
             .AnyAsync();
 
         if (emailAlreadyExists)
-            return new UnprocessableResponse<Guid>(ErrorMessages.MustBeUnique(nameof(cliente.Email)));
+            return new UnprocessableResponse<Guid>(ErrorMessages.DeveSerUnico(nameof(cliente.Email)));
 
         var documentoAlreadyExists = await context.Clientes
             .WithSpecification(new DocumentAlreadyExists(cliente.Documento))
             .AnyAsync();
 
         if (documentoAlreadyExists)
-            return new UnprocessableResponse<Guid>(ErrorMessages.MustBeUnique(nameof(cliente.Documento)));
+            return new UnprocessableResponse<Guid>(ErrorMessages.DeveSerUnico(nameof(cliente.Documento)));
 
         await context.Clientes.AddAsync(cliente);
         await context.SaveChangesAsync();

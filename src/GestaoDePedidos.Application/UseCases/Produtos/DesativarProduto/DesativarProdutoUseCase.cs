@@ -8,7 +8,7 @@ public class DesativarProdutoUseCase(IGestaoDePedidosDbContext context) : IDesat
             .FirstOrDefaultAsync(p => p.Id == id && p.Ativo);
 
         if (produto is null)
-            return new NotFoundResponse<Guid>(ErrorMessages.NotFound<Produto>());
+            return new NotFoundResponse<Guid>(ErrorMessages.NaoEncontrado<Produto>());
 
         produto.Desativar();
         await context.SaveChangesAsync();

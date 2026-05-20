@@ -8,7 +8,7 @@ public class AtualizarProdutoUseCase(IGestaoDePedidosDbContext context) : IAtual
             .FirstOrDefaultAsync(p => p.Id == model.Id);
 
         if (produto is null)
-            return new NotFoundResponse<AtualizarProdutoUseCaseModel>(ErrorMessages.NotFound<Produto>());
+            return new NotFoundResponse<AtualizarProdutoUseCaseModel>(ErrorMessages.NaoEncontrado<Produto>());
 
         produto.AtualizarDados(
             nome: model.Nome,

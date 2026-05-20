@@ -7,7 +7,7 @@ public class AlterarStatusPedidoEnviadoUseCase(IGestaoDePedidosDbContext context
         var pedido = await context.Pedidos.FirstOrDefaultAsync(p => p.Id == dto.PedidoId);
         
         if(pedido is null)
-            return new NotFoundResponse<Pedido>(ErrorMessages.NotFound<Pedido>());
+            return new NotFoundResponse<Pedido>(ErrorMessages.NaoEncontrado<Pedido>());
 
         var statusAnterior = pedido.Status;
         

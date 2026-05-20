@@ -9,7 +9,7 @@ public class ObterClientePorIdUseCase(IGestaoDePedidosDbContext context) : IObte
             .FirstOrDefaultAsync(c => c.Id == id);
 
         if (cliente is null)
-            return new NotFoundResponse<ObterClientePorIdUseCaseModel>(ErrorMessages.NotFound<Cliente>());
+            return new NotFoundResponse<ObterClientePorIdUseCaseModel>(ErrorMessages.NaoEncontrado<Cliente>());
 
         return new OkResponse<ObterClientePorIdUseCaseModel>(new ObterClientePorIdUseCaseModel
         {

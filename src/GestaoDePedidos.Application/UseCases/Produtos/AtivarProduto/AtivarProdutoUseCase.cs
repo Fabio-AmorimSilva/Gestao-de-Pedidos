@@ -8,7 +8,7 @@ public class AtivarProdutoUseCase(IGestaoDePedidosDbContext context) : IAtivarPr
             .FirstOrDefaultAsync(p => p.Id == id && !p.Ativo);
 
         if (produto is null)
-            return new NotFoundResponse<Guid>(ErrorMessages.NotFound<Produto>());
+            return new NotFoundResponse<Guid>(ErrorMessages.NaoEncontrado<Produto>());
 
         produto.Ativar();
         await context.SaveChangesAsync();

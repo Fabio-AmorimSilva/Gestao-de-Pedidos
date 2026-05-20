@@ -7,7 +7,7 @@ public class AlterarStatusPedidoParaCanceladoUseCase(IGestaoDePedidosDbContext c
         var pedido = await context.Pedidos.FirstOrDefaultAsync(p => p.Id == dto.PedidoId);
         
         if(pedido is null)
-            return new NotFoundResponse<Pedido>(ErrorMessages.NotFound<Pedido>());
+            return new NotFoundResponse<Pedido>(ErrorMessages.NaoEncontrado<Pedido>());
         
         var produtosIds = context.Pedidos
             .SelectMany(p => p.Itens)
@@ -17,7 +17,7 @@ public class AlterarStatusPedidoParaCanceladoUseCase(IGestaoDePedidosDbContext c
             .AnyAsync(p => produtosIds.Contains(p.Id));
             
         if(!produtosExists)
-            return new NotFoundResponse<Produto>(ErrorMessages.NotFound<Produto>());
+            return new NotFoundResponse<Produto>(ErrorMessages.NaoEncontrado<Produto>());
         
         var statusAnterior = pedido.Status;
         pedido.StatusCancelado();

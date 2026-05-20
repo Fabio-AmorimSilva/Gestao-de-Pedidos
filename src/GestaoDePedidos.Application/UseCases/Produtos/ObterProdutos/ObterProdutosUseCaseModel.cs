@@ -2,12 +2,12 @@
 
 public record ObterProdutosUseCaseModel
 {
-    public Guid Id { get; set; }
-    public string Nome { get; set; } = null!;
-    public string Descricao { get; set; } = null!;
-    public decimal Preco { get; set; }
-    public int Estoque { get; set; }
-    public bool Ativo { get; set; }
-    public DateTime DataCriacao { get; set; }
-    public DateTime? DataAtualizacao { get; set; }
+    public Guid Id { get; init; }
+    public string Nome { get; init; } = null!;
+    public string Descricao { get; init; } = null!;
+    public decimal Preco { get; init; }
+    public int Estoque { get; init; }
+    public bool Ativo { get; init; }
+    public DateTime DataCriacao { get; init; }
+    public DateTime? DataAtualizacao { get; init; }
 }

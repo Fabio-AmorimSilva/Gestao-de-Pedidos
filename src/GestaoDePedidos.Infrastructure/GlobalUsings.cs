@@ -1,6 +1,7 @@
 global using System.Reflection;
 global using GestaoDePedidos.Application.Common.Interfaces;
 global using GestaoDePedidos.Infrastructure.Data;
+global using GestaoDePedidos.Infrastructure.Interceptors;
 global using GestoDePedidos.Domain.Entities;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.EntityFrameworkCore.Diagnostics;

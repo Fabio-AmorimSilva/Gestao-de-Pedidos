@@ -18,8 +18,8 @@ public class PedidoItem : Entity
     )
     {
         Guard.IsNotDefault(produtoId);
-        Guard.IsLessThanOrEqualTo(quantidade, QuantidadeMinLength);
-        Guard.IsLessThanOrEqualTo(PrecoMinLength, PrecoMinLength);
+        Guard.IsGreaterThan(quantidade, QuantidadeMinLength);
+        Guard.IsGreaterThan(preco, PrecoMinLength);
         
         ProdutoId = produtoId;
         Quantidade = quantidade;

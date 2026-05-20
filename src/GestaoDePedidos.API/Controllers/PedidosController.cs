@@ -4,8 +4,8 @@
 public class PedidosController(UseCaseValidation validation) : BaseController(validation)
 {
     [HttpGet]
-    public async Task<IActionResult> List()
-        => await Execute<IObterPedidosUseCase, Unit, Response<IEnumerable<ObterPedidosUseCaseModel>>>(Unit.Value);
+    public async Task<IActionResult> List([FromQuery] PagedRequest request)
+        => await Execute<IObterPedidosUseCase, PagedRequest, Response<PagedResult<ObterPedidosUseCaseModel>>>(request);
 
     [HttpGet("{id:guid}")]
     public async Task<IActionResult> Get(Guid id)
@@ -28,6 +28,8 @@ public class PedidosController(UseCaseValidation validation) : BaseController(va
         => await Execute<IAlterarStatusPedidoParaCanceladoUseCase, Guid, Response>(id);
 
     [HttpGet("{id:guid}/historico-status")]
-    public async Task<IActionResult> HistoricoStatus(Guid id)
-        => await Execute<IObterHistoricoStatusPedidoUseCase, Guid, Response<IEnumerable<ObterHistoricoStatusPedidoUseCaseModel>>>(id);
+    public async Task<IActionResult> HistoricoStatus(
+        Guid id, 
+        [FromQuery] ObterHistoricoStatusPedidoRequest request
+    ) => await Execute<IObterHistoricoStatusPedidoUseCase, ObterHistoricoStatusPedidoRequest, Response<PagedResult<ObterHistoricoStatusPedidoUseCaseModel>>>(request with { PedidoId = id });
 }

@@ -21,7 +21,7 @@ public class PedidoHistoricoStatus : Entity
         Guard.IsNotDefault(pedidoId);
 
         if (!string.IsNullOrWhiteSpace(motivo))
-            Guard.IsLessThanOrEqualTo(MotivoMaxLength, motivo.Length, nameof(motivo));
+            Guard.IsLessThanOrEqualTo(motivo.Length, motivo.Length, nameof(motivo));
         
         PedidoId = pedidoId;
         StatusAnterior = statusAnterior;

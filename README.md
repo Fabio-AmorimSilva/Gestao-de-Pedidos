@@ -1,2 +1,1 @@
-# Gestao-de-Produtos
-Api para gestão de produtos
+# Gestao-de-Pedidos

@@ -1,14 +1,14 @@
 ﻿namespace GestaoDePedidos.Application.Common.Pagination;
 
-public class PagedRequest
+public record PagedRequest
 {
     private const int TamanhoMaximoPagina = 50;
 
     private int _tamanhoPagina = 10;
 
-    public int PageIndex { get; init; } = 1;
+    public int IndicePagina { get; init; } = 1;
 
-    public int PageSize
+    public int TamanhoPagina
     {
         get => _tamanhoPagina;
 

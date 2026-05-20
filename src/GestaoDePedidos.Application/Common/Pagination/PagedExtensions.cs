@@ -4,12 +4,11 @@ public static class PaginationExtensions
 {
     public static async Task<PagedResult<T>> ToPagedResultAsync<T>(
         this IQueryable<T> query,
-        int indicePagina,
-        int tamanhoPagina
+        PagedRequest request
     )
     {
-        indicePagina = Math.Max(indicePagina, 1);
-        tamanhoPagina = Math.Max(tamanhoPagina, 1);
+        var indicePagina = Math.Max(request.IndicePagina, 1);
+        var tamanhoPagina = Math.Max(request.TamanhoPagina, 1);
 
         var totalRecords =
             await query.CountAsync();

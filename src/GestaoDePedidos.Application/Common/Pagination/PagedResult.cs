@@ -12,7 +12,7 @@ public sealed class PagedResult<T>
 
     public int TotalPaginas { get; init; }
 
-    public bool HasNextPage => IndicePagina < TotalPaginas;
+    public bool TemProximaPagina => IndicePagina < TotalPaginas;
 
-    public bool HasPreviousPage => IndicePagina > 1;
+    public bool TemPaginaAnterior => IndicePagina > 1;
 }

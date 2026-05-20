@@ -4,8 +4,8 @@ namespace GestaoDePedidos.API.Controllers;
 public class ProdutosController(UseCaseValidation validation) : BaseController(validation)
 {
     [HttpGet]
-    public async Task<IActionResult> List()
-        => await Execute<IObterProdutosUseCase, Unit, Response<IEnumerable<ObterProdutosUseCaseModel>>>(Unit.Value);
+    public async Task<IActionResult> List([FromQuery] PagedRequest request)
+        => await Execute<IObterProdutosUseCase, PagedRequest, Response<PagedResult<ObterProdutosUseCaseModel>>>(request);
 
     [HttpGet("{id:guid}")]
     public async Task<IActionResult> Get(Guid id)

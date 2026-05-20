@@ -5,7 +5,13 @@ builder.Services
     .AddApplication()
     .AddInfrastructure(builder.Configuration)
     .AddApi()
-    .AddControllers();
+    .AddProblemDetails()
+    .AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(
+            new SaoPauloDateTimeConverter());
+    });
 
 builder.Services.AddEndpointsApiExplorer();
 

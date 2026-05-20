@@ -26,4 +26,8 @@ public class PedidosController(UseCaseValidation validation) : BaseController(va
     [HttpPut("{id:guid}/cancelado")]
     public async Task<IActionResult> Cancelado(Guid id)
         => await Execute<IAlterarStatusPedidoParaCanceladoUseCase, Guid, Response>(id);
+
+    [HttpGet("{id:guid}/historico-status")]
+    public async Task<IActionResult> HistoricoStatus(Guid id)
+        => await Execute<IObterHistoricoStatusPedidoUseCase, Guid, Response<IEnumerable<ObterHistoricoStatusPedidoUseCaseModel>>>(id);
 }

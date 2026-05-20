@@ -8,11 +8,13 @@ public class ObterPedidosUseCase(IGestaoDePedidosDbContext context) : IObterPedi
             .AsNoTracking()
             .Select(p => new ObterPedidosUseCaseModel
             {
+                PedidoId = p.Id,
                 Status = p.Status,
                 Total = p.Total,
                 DataCriacao = p.DataCriacao,
                 Itens = p.Itens.Select(i => new ObterPedidosItemUseCaseModel
                 {
+                    ItemId =  i.Id,
                     Preco = i.Preco,
                     Quantidade = i.Quantidade,
                     Total = i.Total

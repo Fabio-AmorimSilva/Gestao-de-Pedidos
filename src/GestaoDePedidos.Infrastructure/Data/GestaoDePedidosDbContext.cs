@@ -1,6 +1,4 @@
-﻿using GestaoDePedidos.Application.Common.Interfaces;
-
-namespace GestaoDePedidos.Infrastructure.Data;
+﻿namespace GestaoDePedidos.Infrastructure.Data;
 
 public class GestaoDePedidosDbContext(DbContextOptions<GestaoDePedidosDbContext> options) : 
     DbContext(options),

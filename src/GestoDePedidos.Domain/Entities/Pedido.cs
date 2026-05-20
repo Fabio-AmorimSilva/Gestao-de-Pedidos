@@ -7,18 +7,22 @@ public class Pedido : Entity
     public decimal Total { get; private set; }
     public DateTime DataCriacao { get; set; }
     
-    private IReadOnlyCollection<PedidoItem> _itens;
+    private List<PedidoItem> _itens;
     public IReadOnlyCollection<PedidoItem> Itens => _itens;
 
     public Pedido(
-        Guid clientId, 
-        StatusPedido status,
-        decimal total
+        Guid clientId
     )
     {
         ClientId = clientId;
-        Status = status;
-        Total = total;
+        Status = StatusPedido.Criado;
+        Total = TotalItens();
         DataCriacao = DateTime.UtcNow;
     }
+    
+    public void AddItem(PedidoItem item)
+        => _itens.Add(item);
+    
+    public decimal TotalItens()
+        => _itens.Sum(pedidoItem => pedidoItem.Total);
 }  

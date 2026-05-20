@@ -1,6 +1,6 @@
-﻿namespace GestaoDePedidos.Application.Services.Clientes.Dtos;
+﻿namespace GestaoDePedidos.Application.UseCases.Clientes.ObterClientePorId;
 
-public record ClienteResponseDto
+public record ObterClientePorIdUseCaseModel
 {
     public string Nome { get; set; } = null!;
     public string Email { get; set; } = null!;

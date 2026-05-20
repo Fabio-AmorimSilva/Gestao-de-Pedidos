@@ -2,9 +2,9 @@
 
 public record ObterHistoricoStatusPedidoUseCaseModel
 {
-    public Guid PedidoId { get; set; }
-    public StatusPedido StatusAnterior { get; set; }
-    public StatusPedido StatusPosterior { get; set; }
-    public DateTime DataAlteracao { get; set; }
-    public string? Motivo { get; set; }
+    public Guid PedidoId { get; init; }
+    public StatusPedido StatusAnterior { get; init; }
+    public StatusPedido StatusPosterior { get; init; }
+    public DateTime DataAlteracao { get; init; }
+    public string? Motivo { get; init; }
 }

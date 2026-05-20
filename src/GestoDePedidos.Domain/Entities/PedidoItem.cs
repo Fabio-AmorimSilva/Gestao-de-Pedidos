@@ -24,9 +24,6 @@ public class PedidoItem : Entity
         ProdutoId = produtoId;
         Quantidade = quantidade;
         Preco = preco;
-        Total = TotalItem();
+        Total = quantidade * preco;
     }
-    
-    public decimal TotalItem()
-        => Quantidade * Preco;
 }

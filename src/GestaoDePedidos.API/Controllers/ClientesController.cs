@@ -7,11 +7,11 @@ public class ClientesController(UseCaseValidation validation) : BaseController(v
     public async Task<IActionResult> List([FromQuery]  PagedRequest request)
         => await Execute<IObterClientesUseCase, PagedRequest, Response<PagedResult<ObterClientesUseCaseModel>>>(request);
 
-    [HttpGet]
+    [HttpGet("{id:guid}")]
     public async Task<IActionResult> Get(Guid id)
-        => await Execute<IObterClientePorIdUseCase, Guid, Response<IEnumerable<ObterClientePorIdUseCaseModel>>>(id);
+        => await Execute<IObterClientePorIdUseCase, Guid, Response<ObterClientePorIdUseCaseModel>>(id);
     
-    [HttpPut]
+    [HttpPut("{id:guid}")]
     public async Task<IActionResult> Deactivate(Guid id)
         => await Execute<IDesativarClienteUseCase, Guid, Response<Unit>>(id);
     

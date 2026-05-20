@@ -18,6 +18,7 @@ public class Cliente : Entity, IAuditableEntity
     )
     {
         Guard.IsNotEmpty(nome);
+        Guard.IsLessThanOrEqualTo(NomeMaxLength, nome.Length, nameof(nome));
         Guard.IsNotEmpty(email);
         Guard.IsNotEmpty(documento);
         

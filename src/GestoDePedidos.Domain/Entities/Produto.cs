@@ -45,6 +45,18 @@ public class Produto : Entity, IAuditableEntity
         Estoque = estoque;
     }
 
+    public bool RemoverEstoque(int estoque)
+    {
+        Guard.IsGreaterThan(estoque, 0);
+
+        if (Estoque < estoque)
+            return false;
+        
+        Estoque -= estoque;
+
+        return true;
+    }
+
     public void Ativar() => Ativo = true;
 
     public void Desativar() => Ativo = false;

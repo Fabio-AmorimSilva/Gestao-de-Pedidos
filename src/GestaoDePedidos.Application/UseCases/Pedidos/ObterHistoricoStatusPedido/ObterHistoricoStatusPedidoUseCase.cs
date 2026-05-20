@@ -11,6 +11,7 @@ public class ObterHistoricoStatusPedidoUseCase(IGestaoDePedidosDbContext context
             .Where(phs => phs.PedidoId == request.PedidoId)
             .Select(phs => new ObterHistoricoStatusPedidoUseCaseModel
             {
+                PedidoId = phs.PedidoId,
                 StatusAnterior = phs.StatusAnterior,
                 StatusPosterior = phs.StatusPosterior,
                 DataAlteracao = phs.DataAlteracao,

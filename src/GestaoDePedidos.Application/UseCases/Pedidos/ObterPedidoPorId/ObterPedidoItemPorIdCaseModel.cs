@@ -1,8 +1,9 @@
 ﻿namespace GestaoDePedidos.Application.UseCases.Pedidos.ObterPedidoPorId;
 
-public class ObterPedidoItemPorIdCaseModel
+public record ObterPedidoItemPorIdCaseModel
 {
-    public int Quantidade { get; set; }
-    public decimal Preco { get; set; }
-    public decimal Total { get; set; }
+    public Guid ItemId { get; init; }
+    public int Quantidade { get; init; }
+    public decimal Preco { get; init; }
+    public decimal Total { get; init; }
 }

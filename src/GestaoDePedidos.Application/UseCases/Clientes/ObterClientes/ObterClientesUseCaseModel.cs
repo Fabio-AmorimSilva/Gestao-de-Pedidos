@@ -2,7 +2,7 @@
 
 public class ObterClientesUseCaseModel
 {
-    public string Nome { get; set; } = null!;
-    public string Email { get; set; } = null!;
-    public string Documento { get; set; } = null!;
+    public string Nome { get; init; } = null!;
+    public string Email { get; init; } = null!;
+    public string Documento { get; init; } = null!;
 }

@@ -8,10 +8,13 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.4"/>
+        <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="10.1.7" />
+        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="10.1.7" />
+        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="10.1.7" />
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Controllers\" />
+      <ProjectReference Include="..\GestaoDePedidos.Application\GestaoDePedidos.Application.csproj" />
+      <ProjectReference Include="..\GestaoDePedidos.Infrastructure\GestaoDePedidos.Infrastructure.csproj" />
     </ItemGroup>
-
 </Project>

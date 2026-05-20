@@ -2,7 +2,7 @@
 
 public class CriarClienteUseCase(IGestaoDePedidosDbContext context) : ICriarClienteUseCase
 {
-    public async Task<Response<Guid>> ExecuteAsync(Cliente dto)
+    public async Task<Response<Guid>> ExecuteAsync(CriarClienteUseCaseModel dto)
     {
         var cliente = new Cliente(
             dto.Nome,

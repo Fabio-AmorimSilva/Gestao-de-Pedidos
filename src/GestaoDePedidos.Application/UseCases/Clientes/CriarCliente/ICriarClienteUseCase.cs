@@ -2,5 +2,5 @@
 
 public interface ICriarClienteUseCase
 {
-    Task<Response<Guid>> ExecuteAsync(Cliente dto);
+    Task<Response<Guid>> ExecuteAsync(CriarClienteUseCaseModel dto);
 }

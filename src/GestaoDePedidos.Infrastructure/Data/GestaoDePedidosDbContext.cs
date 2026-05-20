@@ -7,6 +7,7 @@ public class GestaoDePedidosDbContext(DbContextOptions<GestaoDePedidosDbContext>
     public DbSet<Cliente> Clientes { get; set; }
     public DbSet<Pedido> Pedidos { get; set; }
     public DbSet<Produto> Produtos { get; set; }
+    public DbSet<PedidoHistoricoStatus> PedidoHistoricoStatus { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

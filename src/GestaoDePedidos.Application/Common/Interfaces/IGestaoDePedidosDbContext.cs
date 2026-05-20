@@ -5,6 +5,7 @@ public interface IGestaoDePedidosDbContext
     DbSet<Cliente> Clientes { get; set; }
     DbSet<Pedido> Pedidos { get; set; }
     DbSet<Produto> Produtos { get; set; }
+    DbSet<PedidoHistoricoStatus>  PedidoHistoricoStatus { get; set; }
     
     Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 }

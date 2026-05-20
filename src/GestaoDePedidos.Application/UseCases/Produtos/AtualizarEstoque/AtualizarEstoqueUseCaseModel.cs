@@ -1,7 +1,6 @@
 ﻿namespace GestaoDePedidos.Application.UseCases.Produtos.AtualizarEstoque;
 
-public record AtualizarEstoqueUseCaseModel
-{
-    public Guid Id { get; set; }
-    public int Estoque { get; set; }
-}
+public record AtualizarEstoqueUseCaseModel(
+    Guid ProdutoId,
+    int Estoque
+);

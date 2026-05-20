@@ -26,6 +26,7 @@ public static class DependencyInjection
 
         private IServiceCollection AddGlobalExceptionHandler()
         {
+            services.AddExceptionHandler<ValidationExceptionHandler>();
             services.AddExceptionHandler<GlobalExceptionHandler>();
         
             return services;

@@ -2,5 +2,5 @@
 
 public interface IObterHistoricoStatusPedidoUseCase
 {
-    Task<Response<IEnumerable<ObterHistoricoStatusPedidoUseCaseModel>>> ExecuteAsync(Guid pedidoId);
+    Task<Response<PagedResult<ObterHistoricoStatusPedidoUseCaseModel>>> ExecuteAsync(ObterHistoricoStatusPedidoRequest request);
 }

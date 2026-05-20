@@ -2,19 +2,23 @@
 
 public class ObterHistoricoStatusPedidoUseCase(IGestaoDePedidosDbContext context) : IObterHistoricoStatusPedidoUseCase
 {
-    public async Task<Response<IEnumerable<ObterHistoricoStatusPedidoUseCaseModel>>> ExecuteAsync(Guid pedidoId)
+    public async Task<Response<PagedResult<ObterHistoricoStatusPedidoUseCaseModel>>> ExecuteAsync(
+        ObterHistoricoStatusPedidoRequest request
+    )
     {
         var historicos = await context.PedidoHistoricoStatus
             .AsNoTracking()
-            .Where(phs => phs.PedidoId == pedidoId)
+            .Where(phs => phs.PedidoId == request.PedidoId)
             .Select(phs => new ObterHistoricoStatusPedidoUseCaseModel
             {
                 StatusAnterior = phs.StatusAnterior,
                 StatusPosterior = phs.StatusPosterior,
                 DataAlteracao = phs.DataAlteracao,
                 Motivo = phs.Motivo
-            }).ToListAsync();
+                    
+            })
+            .ToPagedResultAsync(request);
         
-        return new OkResponse<IEnumerable<ObterHistoricoStatusPedidoUseCaseModel>>(historicos);
+        return new OkResponse<PagedResult<ObterHistoricoStatusPedidoUseCaseModel>>(historicos);
     }
 }

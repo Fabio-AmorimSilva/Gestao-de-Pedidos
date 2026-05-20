@@ -2,5 +2,5 @@
 
 public interface IObterProdutosUseCase
 {
-    Task<Response<IEnumerable<ObterProdutosUseCaseModel>>> ExecuteAsync();
+    Task<Response<PagedResult<ObterProdutosUseCaseModel>>> ExecuteAsync(PagedRequest request);
 }

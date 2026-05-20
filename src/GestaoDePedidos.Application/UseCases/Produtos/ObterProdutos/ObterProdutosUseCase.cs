@@ -2,7 +2,7 @@
 
 public class ObterProdutosUseCase(IGestaoDePedidosDbContext context) : IObterProdutosUseCase
 {
-    public async Task<Response<IEnumerable<ObterProdutosUseCaseModel>>> ExecuteAsync()
+    public async Task<Response<PagedResult<ObterProdutosUseCaseModel>>> ExecuteAsync(PagedRequest request)
     {
         var produtos = await context.Produtos
             .AsNoTracking()
@@ -17,8 +17,8 @@ public class ObterProdutosUseCase(IGestaoDePedidosDbContext context) : IObterPro
                 DataCriacao = p.DataCriacao,
                 DataAtualizacao = p.DataAtualizacao
             })
-            .ToListAsync();
+            .ToPagedResultAsync(request);
 
-        return new OkResponse<IEnumerable<ObterProdutosUseCaseModel>>(produtos);
+        return new OkResponse<PagedResult<ObterProdutosUseCaseModel>>(produtos);
     }
 }

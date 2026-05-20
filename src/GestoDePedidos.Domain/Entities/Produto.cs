@@ -21,6 +21,7 @@ public class Produto : Entity, IAuditableEntity
     )
     {
         Guard.IsNotEmpty(nome);
+        Guard.IsLessThanOrEqualTo(nome.Length, NomeMaxLength, nameof(nome));
         Guard.IsGreaterThan(estoque, 0);
 
         Nome = nome;

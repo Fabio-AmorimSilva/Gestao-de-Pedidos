@@ -36,6 +36,6 @@ public class PedidoItemEntityTypeConfiguration : IEntityTypeConfiguration<Pedido
             .HasOne<Produto>()
             .WithMany()
             .HasForeignKey(i => i.ProdutoId)
-            .OnDelete(DeleteBehavior.Restrict);
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

@@ -31,7 +31,7 @@ public class PedidoEntityTypeConfiguration : IEntityTypeConfiguration<Pedido>
             .HasOne<Cliente>()
             .WithMany()
             .HasForeignKey(p => p.ClientId)
-            .OnDelete(DeleteBehavior.Restrict);
+            .OnDelete(DeleteBehavior.Cascade);
 
         builder
             .HasMany(p => p.Itens)

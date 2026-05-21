@@ -10,7 +10,10 @@ public static class ErrorMessages
     
     public static string DeveSerMaiorQue(string campo, int valor)
         => $"{campo} deve mairo que {valor}";
-
+    
+    public static string ProdutoInativo()
+        => "Produto inativo";
+    
     public static string NaoEncontrado(string campo)
         => $"{campo} não pode ser encontrado";
     

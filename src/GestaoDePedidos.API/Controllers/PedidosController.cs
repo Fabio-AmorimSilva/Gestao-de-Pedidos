@@ -46,4 +46,12 @@ public class PedidosController(UseCaseValidation validation) : BaseController(va
         Guid id,
         [FromQuery] ObterHistoricoStatusPedidoRequest request
     ) => await Execute<IObterHistoricoStatusPedidoUseCase, ObterHistoricoStatusPedidoRequest, Response<PagedResult<ObterHistoricoStatusPedidoUseCaseModel>>>(request with { PedidoId = id });
+
+    [HttpGet("{id:guid}/historico-preco")]
+    [ProducesResponseType(typeof(Response<PagedResult<ObterHistoricoPrecoUseCaseModel>>), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> HistoricoPreco(
+        Guid id,
+        [FromQuery] ObterHistoricoPrecoRequest request
+    ) => await Execute<IObterHistoricoPrecoUseCase, ObterHistoricoPrecoRequest, Response<PagedResult<ObterHistoricoPrecoUseCaseModel>>>(request with { PedidoId = id });
 }

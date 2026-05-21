@@ -14,8 +14,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestaoDePedidos.API", "src\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestaoDePedidos.DomainUnitTests", "GestaoDePedidos.DomainUnitTests\GestaoDePedidos.DomainUnitTests.csproj", "{010330A3-3354-47FF-9339-18E3C6C404AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestaoDePedidos.ApplicationUnitTests", "GestaoDePedidos.ApplicationUnitTests\GestaoDePedidos.ApplicationUnitTests.csproj", "{C385C67C-5284-485C-B38A-CA4B89239F31}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,7 +25,6 @@ Global
 		{20C03075-5AB7-4E3A-B65D-850CBC3598A7} = {22742383-B3C7-4D24-89F4-2408D648A3FE}
 		{7C34E20E-7C61-497D-B776-D81598A4DCE7} = {22742383-B3C7-4D24-89F4-2408D648A3FE}
 		{010330A3-3354-47FF-9339-18E3C6C404AE} = {F7D0C2D1-EDF0-40A4-8F20-446C8158C198}
-		{C385C67C-5284-485C-B38A-CA4B89239F31} = {F7D0C2D1-EDF0-40A4-8F20-446C8158C198}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{EDEF2FEB-7356-4CBE-96F0-7196893C43E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -50,9 +47,5 @@ Global
 		{010330A3-3354-47FF-9339-18E3C6C404AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{010330A3-3354-47FF-9339-18E3C6C404AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{010330A3-3354-47FF-9339-18E3C6C404AE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C385C67C-5284-485C-B38A-CA4B89239F31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C385C67C-5284-485C-B38A-CA4B89239F31}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C385C67C-5284-485C-B38A-CA4B89239F31}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C385C67C-5284-485C-B38A-CA4B89239F31}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -16,8 +16,8 @@ public class PedidosController(UseCaseValidation validation) : BaseController(va
 
     [HttpPost]
     [ProducesResponseType(typeof(Response<Guid>), StatusCodes.Status201Created)]
-    [ProducesResponseType(typeof(Response<Guid>), StatusCodes.Status404NotFound)]
-    [ProducesResponseType(typeof(Response<Guid>), StatusCodes.Status422UnprocessableEntity)]
+    [ProducesResponseType(typeof(Response), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(Response), StatusCodes.Status422UnprocessableEntity)]
     public async Task<IActionResult> Post([FromBody] CriarPedidoUseCaseModel model)
         => await Execute<ICriarPedidoUseCase, CriarPedidoUseCaseModel, Response<Guid>>(model);
 
@@ -41,7 +41,6 @@ public class PedidosController(UseCaseValidation validation) : BaseController(va
 
     [HttpGet("{id:guid}/historico-status")]
     [ProducesResponseType(typeof(Response<PagedResult<ObterHistoricoStatusPedidoUseCaseModel>>), StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> HistoricoStatus(
         Guid id,
         [FromQuery] ObterHistoricoStatusPedidoRequest request
@@ -49,7 +48,6 @@ public class PedidosController(UseCaseValidation validation) : BaseController(va
 
     [HttpGet("{id:guid}/historico-preco")]
     [ProducesResponseType(typeof(Response<PagedResult<ObterHistoricoPrecoUseCaseModel>>), StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> HistoricoPreco(
         Guid id,
         [FromQuery] ObterHistoricoPrecoRequest request

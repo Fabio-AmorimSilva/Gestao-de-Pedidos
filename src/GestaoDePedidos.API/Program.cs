@@ -9,8 +9,8 @@ builder.Services
     .AddControllers()
     .AddJsonOptions(options =>
     {
-        options.JsonSerializerOptions.Converters.Add(
-            new SaoPauloDateTimeConverter());
+        options.JsonSerializerOptions.Converters.Add(new SaoPauloDateTimeConverter());
+        options.JsonSerializerOptions.Converters.Add(new DecimalJsonConverter());
     });
 
 builder.Services.AddEndpointsApiExplorer();

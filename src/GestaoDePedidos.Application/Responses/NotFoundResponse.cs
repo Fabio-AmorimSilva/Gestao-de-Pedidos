@@ -9,3 +9,13 @@ public class NotFoundResponse<T>  : ApiResponse<T>
         Message = message;
     }
 }
+
+public class NotFoundResponse  : ApiResponse
+{
+    public NotFoundResponse(string message)
+    {
+        StatusCode = 404;
+        IsSuccess = false;
+        Message = message;
+    }
+}

@@ -70,6 +70,7 @@
     - Criação do DecimalJsonConverter para converter todos arredondamento de todos os dados decimais para duas casas após a vírgula
     - Utilização de Payloads para facilitar as requisções em endpoints.
     - Utilização de Swagger para documentação de endpoints, respostas e erros.
+    - Configuração de retorno do Json com conversão de tipos de dados para o formato esperado pelo frontend, nomeação em camelcase e ingorando ciclos para prevenção de erros.
 
   - Estratégia de arredondamento e valores monetários
     - Conforme dito anteriormente decimal foi escolhido para tipos monetários devido sua alta precisão em relação ao floar e double. O problema é do decimal é a divisão por frações que pode gerar valores inconsistentes quando não é utilizado o sufixo m.

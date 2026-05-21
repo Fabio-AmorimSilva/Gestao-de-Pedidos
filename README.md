@@ -8,7 +8,8 @@
      - Utilização de EF Core versão 10.0.8 para persistência de dados
      - Projeto do [Jason Taylor](https://github.com/jasontaylordev/CleanArchitecture/tree/main) utilizado como base para organização e implementações
      - Utilização de GlobalUsings para concentração de namespaces de forma que não fiquem espalhados pelas classes
-     - Com exceção da camda de domínio todas as camadas possuem uma classe DependencyInjection que funciona como o contêinter de injeção de dependência da respectiva camada
+     - Com exceção da camada de domínio todas as outras possuem uma classe DependencyInjection que funciona como o contêinter de injeção de dependência da respectiva camada.
+     - Utilização da bibliteca xUnit para geração de testes.
      
   - Domínio
     - Criação da classe Entity como base para outras entidades
@@ -59,25 +60,54 @@
     - Criação de configurações para mapeamento de entidades utilizando a interface IEntityTypeConfiguration.
     - Utilização de um DbContext para representação de uma sessão com o banco de dados
     - Utilização de interface do IGestaoPedidosDbContext para acesso aos dados impedindo que o DbContext seja utilizado diretamente na camada de aplicação ou em outras camadas. A desvantagem é a dependência com o EF Core.
-    - Utilização de [interceptor](https://learn.microsoft.com/en-us/ef/core/logging-events-diagnostics/interceptors) para atualização de dados de auditoria como data de criação e data de atualização. A grande vantagem é separar a responsabilidade em uma classe diferente, mas é necessário cuidado para com a manutenção dessa classe.
- 
+    - Utilização de [interceptor](https://learn.microsoft.com/en-us/ef/core/logging-events-diagnostics/interceptors) para atualização de dados de auditoria como data de criação e data de atualização. A grande vantagem é separar a responsabilidade em uma classe diferente, mas é necessário cuidado para com a manutenção dessa classe. 
+
   - API
     - Utilização de Controllers para construção dos endpoints
     - Utilização de [handlers de exceção globais](https://learn.microsoft.com/pt-br/aspnet/core/fundamentals/error-handling?view=aspnetcore-10.0#iexceptionhandler) para captura e tratamento de exceções sem a necessidade de try/catch.
     - Utilização do ProblemDetails [RFC 7807](https://datatracker.ietf.org/doc/html/rfc7807) para padronização de retorno de erros em conjunto com os handlers de exceção globais.
     - Criação do SaoPauloDateTimeConverter para conversão dos valores de data de acordo com o fuso de São Paulo.
+    - Criação do DecimalJsonConverter para converter todos arredondamento de todos os dados decimais para duas casas após a vírgula
     - Utilização de Payloads para facilitar as requisções em endpoints.
     - Utilização de Swagger para documentação de endpoints, respostas e erros.
+
+  - Estratégia de arredondamento e valores monetários
+    - Conforme dito anteriormente decimal foi escolhido para tipos monetários devido sua alta precisão em relação ao floar e double. O problema é do decimal é a divisão por frações que pode gerar valores inconsistentes quando não é utilizado o sufixo m.
+    - A precisão para armazenamento escolhida foi 18, 2, ou seja, até 18 dígitos antes da vírgula e apenas 2 dígitos após essa abordagem foi escolhida com base no que é mais utilizado pelo mercado sendo uma solução adequada para maiorias dos casos.
+    - O arredondamento é feito pelo DecimalJsonConverter sendo o retorno dos valores monetários sendo duas casas após a vírgula para todas as consultas.
+
+  - Estratégia de Estoque
+    - No UseCase CriarPedido sempre que um pedido é criado o estoque do produto é verificado, também se o produto está ativo e se existe.
+    - Após isso o pedido é criado, o estoque do produto é descontado e o histórico de preço é armazenado.
+    - Sempre que um pedido é cancelado e está com o status de pagamento Criado o estoque é reposto e esse pedido não pode ser alterado, tendo o usuário que fazer um novo pedido mesmo que seja igual.
+    - Para cada mudança de Status do Pedido um histórico de status é armazenado na base de dados.
+    - Tanto o histórico de preço quanto o histórico de mudança de status podem ser consultados por meio de endpoints na PedidosController.
+      - api/pedidos/{id}/historico-preco
+      - api/pedidos/{id}/historico-status
+
+  - Datas
+    - Datas são armazenadas em UTC 
+    - Datas são retornadas conforme o fuso horário de São Paulo fazendo o uso do SaoPauloDateTimeConverter
+
+  - Testes
+    - A tecnologia utilizada para os testes foi a biblioteca xUnit devido sua grande popularidade e consolidação de mercado.
+    - O foco dos testes foi na camada de domínio para agrupar as regras de domínio devido o desenvolvimento utilizando Domain Driven Design.
+    - Os testes podem ser executados via IDE da sua preferência ou via linha de comando executando dotnet test na pasta raiz do projeto.
  
+ - Pontos que ficaram fora do escopo
+   - Testes de integração utilizando [WebApplicationFactory](https://learn.microsoft.com/en-us/aspnet/core/test/integration-tests?view=aspnetcore-10.0&pivots=xunit) que é uma recomendação da Microsoft
+     - Isso permite emular a API de forma que podemos fazer chamadas diretamente e usar a própria infraestrutura do projeto sem a necessidade de dados mockados aumentando muita a confiabilidade dos testes
+   - Melhorar as validações tanto no domínio quanto na camada de aplicação
+   - Criar uma documentação mais personalidade para os endpoints em conjunto com o Swagger para algo mais detalhado de forma que o entendimento para todos fique mais fácil
+
 ## Instruções para execução da aplicação
 
 - Instale o [SDK do .NET 10](https://dotnet.microsoft.com/en-us/download/dotnet/10.0) utilize a versão 10.0.104
 - Clonar o repositório para uma pasta local
 - Acessar o diretório raiz do projeto onde está localizado o arquivo de solução -> ..\Gestão Produtos
 - Métodos
-  - As migrations já estão criadas então não é necessário cri
+  - As migrations já estão criadas então não é necessário criar
   - Via IDE
-    - Abrir a solução da IDE de sua preferência
     - Abrir a solução da IDE de sua preferência
     - Dentro do projeto GestaoDePedidos.API criar o arquivo appsettings.json com o conteúdo abaixo substituindo o Server e o Password pelos valores locais referentes ao seu banco de dados
     ````json
@@ -115,5 +145,6 @@
     - Instale a [cli do ef core](https://learn.microsoft.com/en-us/ef/core/cli/dotnet). A ferramenta é múltiplataforma.
     - Acesse o terminal do seu sistema operacional dentro da pasta que contém a migration do projeto
     - Execute o comando dotnet ef database update --project src/GestaoDePedidos.Infrastructure --startup-project src/GestaoDePedidos.API
+    - Execute o comando dotnet run --launch-profile https --project src/GestaoDePedidos.API na pasta raiz do projeto
     - Agora os endpoints podem ser acessados via Swagger [https](https://localhost:7223/swagger/index.html) ou [http](http://localhost:5055/swagger/index.html)
 

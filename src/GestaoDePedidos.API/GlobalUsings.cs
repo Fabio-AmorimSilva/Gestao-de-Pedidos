@@ -29,5 +29,6 @@ global using GestaoDePedidos.Application.UseCases.Pedidos.Dtos;
 global using GestaoDePedidos.Application.UseCases.Pedidos.ObterPedidoPorId;
 global using GestaoDePedidos.Application.UseCases.Pedidos.ObterPedidos;
 global using GestaoDePedidos.Application.UseCases.Pedidos.ObterHistoricoStatusPedido;
+global using GestaoDePedidos.Application.UseCases.Pedidos.ObterHistoricoPreco;
 global using Microsoft.AspNetCore.Diagnostics;
 global using Microsoft.AspNetCore.Mvc;

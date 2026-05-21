@@ -8,6 +8,7 @@ public class GestaoDePedidosDbContext(DbContextOptions<GestaoDePedidosDbContext>
     public DbSet<Pedido> Pedidos { get; set; }
     public DbSet<Produto> Produtos { get; set; }
     public DbSet<PedidoHistoricoStatus> PedidoHistoricoStatus { get; set; }
+    public DbSet<PedidoHistoricoPreco> PedidoHistoricoPreco { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

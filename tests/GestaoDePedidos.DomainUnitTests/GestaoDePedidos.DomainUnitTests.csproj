@@ -24,7 +24,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\src\GestoDePedidos.Domain\GestoDePedidos.Domain.csproj" />
-      <ProjectReference Include="..\src\GestoDePedidos.Domain\GestoDePedidos.Domain.csproj" />
     </ItemGroup>
 
 </Project>

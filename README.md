@@ -10,6 +10,7 @@
      - Utilização de GlobalUsings para concentração de namespaces de forma que não fiquem espalhados pelas classes
      - Com exceção da camada de domínio todas as outras possuem uma classe DependencyInjection que funciona como o contêinter de injeção de dependência da respectiva camada.
      - Utilização da bibliteca xUnit para geração de testes.
+     - O tipo Guid foi utilizado para os Ids das entidades pois dificilmente pode ser duplicado, é gerado de forma aleatória e é seguro. O grande problema é a fragmentação que ocorre quando o mesmo é buscado diversas vezes devido ao modelo de busca do SQL Server, mas isso pode ser solucionado utilizando uma rotina de recuperação de índices.
      
   - Domínio
     - Criação da classe Entity como base para outras entidades

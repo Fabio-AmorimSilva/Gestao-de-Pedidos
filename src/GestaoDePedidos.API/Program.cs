@@ -9,6 +9,10 @@ builder.Services
     .AddControllers()
     .AddJsonOptions(options =>
     {
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+        options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+        
         options.JsonSerializerOptions.Converters.Add(new SaoPauloDateTimeConverter());
         options.JsonSerializerOptions.Converters.Add(new DecimalJsonConverter());
     });

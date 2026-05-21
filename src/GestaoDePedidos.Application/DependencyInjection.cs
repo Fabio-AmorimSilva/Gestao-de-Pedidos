@@ -37,6 +37,7 @@ public static class DependencyInjection
             services.AddScoped<IAlterarStatusPedidoEnviadoUseCase, AlterarStatusPedidoEnviadoUseCase>();
             services.AddScoped<IAlterarStatusPedidoParaCanceladoUseCase, AlterarStatusPedidoParaCanceladoUseCase>();
             services.AddScoped<IObterHistoricoStatusPedidoUseCase, ObterHistoricoStatusPedidoUseCase>();
+            services.AddScoped<IObterHistoricoPrecoUseCase, ObterHistoricoPrecoUseCase>();
 
             return services;
         }
